@@ -573,3 +573,21 @@ Key routing rules:
 - Architecture review → invoke plan-eng-review
 - Save progress, checkpoint, resume → invoke checkpoint
 - Code quality, health check → invoke health
+
+---
+
+## Fork-local: project memory and workflow
+
+> This section exists only on Nick's fork (`tiliakoos/SuperCmd`, branch `features/tiliakoos`). It is not upstream and should never appear in a PR to `SuperCmdLabs/SuperCmd`.
+
+Everything above documents SuperCmd as upstream maintains it. How *this fork* is worked in lives in two places:
+
+- **`AGENTS.md`** in this repo — branch layout, the environment traps that bite every build, and the pre-PR checklist. Read it before making changes.
+- **`/Users/NickT/Documents/Obsidian_Vault/Projects/04_supercmd/`** — the Obsidian vault holding project memory: `fork-workflow.md` (the playbook), `status.md` (what changed when), `to-dos.md`, `decision-log.md`, and `technical/` notes. Read `README.md` there first; update `status.md` and `decision-log.md` when work lands.
+
+Quick reminders, expanded in `AGENTS.md`:
+
+- `main` mirrors upstream and is never committed to. `features/tiliakoos` is the daily driver. PRs come from topic branches cut from `upstream/main`.
+- `npm install` needs `--force` on arm64; revert the lockfile afterwards.
+- `npm run build:native` rewrites `src/native/soulver-calculator/Package.resolved`; revert it before committing.
+- Always `codesign --force --deep --sign -` a packaged bundle before installing it.
