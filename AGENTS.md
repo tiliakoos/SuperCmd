@@ -12,8 +12,8 @@ This is a **fork**, not a repo we own. Upstream is `SuperCmdLabs/SuperCmd`; `ori
 
 | Note | What it holds |
 |---|---|
-| `README.md` | Index. Start here. |
-| `fork-workflow.md` | Branches, build, install, PR flow, and the four traps that bite every time. **Read this first.** |
+| `README.md` | Index, plus a 30-second orientation. |
+| `fork-workflow.md` | **Read this first.** Part 1 is the mental model (three places, three branches, why). Part 2 is the procedure for any new fix/change/addition. Parts 3-5 are build, the four traps, and the PR checklist. |
 | `status.md` | Current state and a reverse-chronological log of what changed. |
 | `to-dos.md` | Open work: Fixes / Features / Maintenance / Improvements. |
 | `decision-log.md` | Durable decisions and the reasoning behind them. |
@@ -39,7 +39,18 @@ Vault notes use YAML frontmatter (`created`, `updated`, `project`, `type`) and O
 | `features/tiliakoos` | Daily driver. The installed app is built from this. Local-only changes live here. |
 | `fix/...`, `feat/...` | One concern each, cut from `upstream/main`, pushed to origin, opened as PRs. |
 
-Anything that could go upstream starts on a topic branch cut from `upstream/main`, then merges into `features/tiliakoos`. Never build a PR diff on top of personal-branch commits.
+## The rule for any new change
+
+Ask: could this plausibly help everyone, or is it only for Nick?
+
+- **Could help everyone** (a bug, a crash, a missing API): branch from `upstream/main`, commit, push to `origin`, open the PR, then merge into `features/tiliakoos` and rebuild.
+- **Only for Nick** (personal defaults, docs, local hacks): commit straight to `features/tiliakoos` and rebuild.
+
+When unsure, treat it as upstreamable. Starting on a topic branch and later deciding not to send it costs nothing; the reverse means untangling it from personal commits.
+
+Never build a PR diff on top of personal-branch commits. Never commit to `main`.
+
+Full procedure, including what to do while a PR is under review and after it merges, is in the vault's `fork-workflow.md`.
 
 ## Non-negotiables
 
